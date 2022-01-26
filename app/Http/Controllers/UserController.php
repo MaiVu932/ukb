@@ -29,5 +29,7 @@ class UserController extends Controller
         if($request->wantsJson()) {
             return $this->responseSuccess($users, 'get users list successfully');
         }
+        return $this->responseSuccess($users, 'get users list successfully');
+
     }
 }
