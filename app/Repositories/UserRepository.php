@@ -3,7 +3,9 @@ namespace App\Repositories;
 
 use App\Models\User;
 use App\Models\Academic;
-use DB;
+use Illuminate\Support\Facades\DB;
+
+
 class UserRepository {
     /**
      * @var User
@@ -37,7 +39,9 @@ class UserRepository {
 
     public function findUserByCode($code)
     {
-        $user = DB::select('SELECT * FROM users WHERE code = ?', [$code]);
+        // $user = DB::select('SELECT * FROM users WHERE code = ?', [$code]);
+        $user = DB::table('users')
+                ->whereExists('code', '=', '123');
         return $user;
     }
 

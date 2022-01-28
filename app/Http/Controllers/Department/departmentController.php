@@ -2,30 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\UserService;
+use App\Services\Department\DepartementService;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Route;
 
 class UserController extends Controller
 {
-    private UserService $userService;
+    private DepartementService $userService;
 
     /**
      * UserController Constructor
      * @param UserService $userService
      */
-    public function __construct(UserService $userService)
+    public function __construct(DepartementService $userService)
     {
         $this->userService = $userService;
     }
-
-
-
-
-
-
-
-
 
     /**
      * index function
@@ -63,15 +55,5 @@ class UserController extends Controller
         return $user;
     }
 
-    public function attendance(Request $request) 
-    {
-        $user_code = '08d4800021';
-        $class_code = '08dCNTT02';
-        $info = $this->userService->getInfoLesson($user_code, $class_code);
-
-        if($request->wantsJson()) {
-            return $this->responseSuccess($info, '');
-        }
-        return $info;
-    }
+    
 }

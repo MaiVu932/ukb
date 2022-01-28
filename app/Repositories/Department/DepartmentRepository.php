@@ -27,6 +27,10 @@ class UserRepository {
 
       }
 
+      public function show($data)
+      {
+        return $data;
+      }
     
 
 }

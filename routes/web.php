@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\ClassController;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +29,7 @@ Route::get('/relationship/one-to-one', function() {
 });
 
 /**
+ * ----------ROLE--------
  * 0: trainning department
  * 1: department
  * 2: homeroom teacher
@@ -33,13 +37,21 @@ Route::get('/relationship/one-to-one', function() {
  * 4: student
  */
 
-Route::group(['prefix'=>'/0'],function(){
-    Route::group(['prefix' =>'/1'], function() {
-        /**
+  /**
          * 0: create
          * 1: update
          * 2: get-list
          */
+
+
+Route::group(['prefix'=>'/0'],function(){
+    Route::group(['prefix' => '/class'], function() {
+        Route::get('/2', [ClassController::class, 'getList']);
+
+    });
+
+    Route::group(['prefix' =>'/department'], function() {
+       
         Route::view('/create', 'department.create');
         Route::post('/0', [DepartmentController::class, 'create'])->name('department-create');
 
@@ -47,7 +59,7 @@ Route::group(['prefix'=>'/0'],function(){
 
         Route::get('/1/{id}', [DepartmentController::class, 'getInfoById']);
         Route::post('/update/{id}', [DepartmentController::class, 'updateInfoById']);
-        
+
     });
 });
 

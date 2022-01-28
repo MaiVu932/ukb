@@ -29,4 +29,9 @@ class UserService
         return $state;
     }
 
+    public function show($data)
+    {
+            return $this->departmentRopository->show($data);
+    }
+
 }
